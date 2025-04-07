@@ -1,778 +1,470 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Plus Pharmacy - Your Trusted Healthcare Partner</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .dark .dark\:bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, #1e3a8a, #111827);
         }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #0056b3;
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 60px;
-            margin-right: 15px;
-        }
-        
-        .logo-text h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .contact-info {
-            text-align: right;
-        }
-        
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Navigation */
-        nav {
-            background-color: #003d82;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            position: relative;
-        }
-        
-        .nav-menu li a {
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            display: block;
-            transition: background-color 0.3s;
-        }
-        
-        .nav-menu li a:hover {
-            background-color: #004a99;
-        }
-        
-        .nav-menu li a i {
-            margin-right: 8px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background-image: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #ff6b6b;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #ff5252;
-            transform: translateY(-3px);
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 60px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .section-title h2 {
-            font-size: 32px;
-            color: #0056b3;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #ff6b6b;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .service-icon {
-            background-color: #0056b3;
-            color: white;
-            font-size: 40px;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #0056b3;
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 60px 0;
-            background-color: #eef2f7;
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .product-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .product-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .product-card:hover .product-img img {
-            transform: scale(1.1);
-        }
-        
-        .product-info {
-            padding: 20px;
-        }
-        
-        .product-info h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .product-info p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        
-        .product-price {
-            font-weight: bold;
-            color: #0056b3;
-            font-size: 18px;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 60px 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .about-img {
-            flex: 1;
-            padding-right: 40px;
-        }
-        
-        .about-img img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-content {
-            flex: 1;
-        }
-        
-        .about-content h2 {
-            font-size: 32px;
-            color: #0056b3;
-            margin-bottom: 20px;
-        }
-        
-        .about-content p {
-            margin-bottom: 15px;
-        }
-        
-        .about-features {
-            margin-top: 30px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .feature-icon {
-            background-color: #0056b3;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 60px 0;
-            background-color: #eef2f7;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .contact-info-box {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .contact-info-box h3 {
-            font-size: 22px;
-            color: #0056b3;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .contact-info-box h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #ff6b6b;
-        }
-        
-        .contact-details {
-            margin-bottom: 25px;
-        }
-        
-        .contact-details p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-details i {
-            margin-right: 10px;
-            color: #0056b3;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #0056b3;
-            color: white;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: #003d82;
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #00264d;
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-col h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: #ff6b6b;
-        }
-        
-        .footer-col p {
-            margin-bottom: 15px;
-            opacity: 0.8;
-            font-size: 14px;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            font-size: 14px;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            opacity: 0.7;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about {
-                flex-direction: column;
-            }
-            
-            .about-img {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo {
-                margin-bottom: 20px;
-                justify-content: center;
-            }
-            
-            .contact-info {
-                text-align: center;
-            }
-            
-            .nav-menu {
-                flex-direction: column;
-            }
-            
-            .hero h2 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
+        .transition-all {
+            transition-property: all;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <img src="logo.png" alt="Smart Plus Pharmacy Logo">
-                <div class="logo-text">
-                    <h1>Smart Plus Pharmacy</h1>
-                    <p>Your Trusted Healthcare Partner</p>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans">
+    <!-- Header with Dark Mode Toggle -->
+    <header class="bg-gradient-to-r from-primary-700 to-primary-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Smart Plus Pharmacy Logo" class="h-12">
+                    <div>
+                        <h1 class="text-xl font-bold">Smart Plus Pharmacy</h1>
+                        <p class="text-sm opacity-90">Your Trusted Healthcare Partner</p>
+                    </div>
                 </div>
-            </div>
-            <div class="contact-info">
-                <a href="tel:+923335120590"><i class="fas fa-phone"></i> +92 333 5120590</a>
-                <a href="https://wa.me/923335120590" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block text-right">
+                        <a href="tel:+923335120590" class="block text-sm hover:underline"><i class="fas fa-phone mr-1"></i> +92 333 5120590</a>
+                        <a href="https://wa.me/923335120590" target="_blank" class="block text-sm hover:underline"><i class="fab fa-whatsapp mr-1"></i> WhatsApp Us</a>
+                    </div>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10">
+                        <i class="fas fa-moon hidden dark:block"></i>
+                        <i class="fas fa-sun block dark:hidden"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
-    
+
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <ul class="nav-menu">
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#products"><i class="fas fa-pills"></i> Products</a></li>
-                <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
-                <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
+    <nav class="bg-primary-800 text-white sticky top-0 z-10 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <ul class="flex flex-wrap w-full md:w-auto">
+                    <li><a href="#home" class="block py-4 px-4 hover:bg-primary-700 transition"><i class="fas fa-home mr-2"></i>Home</a></li>
+                    <li><a href="#products" class="block py-4 px-4 hover:bg-primary-700 transition"><i class="fas fa-pills mr-2"></i>Products</a></li>
+                    <li><a href="#services" class="block py-4 px-4 hover:bg-primary-700 transition"><i class="fas fa-concierge-bell mr-2"></i>Services</a></li>
+                    <li><a href="#about" class="block py-4 px-4 hover:bg-primary-700 transition"><i class="fas fa-info-circle mr-2"></i>About</a></li>
+                    <li><a href="#contact" class="block py-4 px-4 hover:bg-primary-700 transition"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+                </ul>
+                <div class="md:hidden pb-2">
+                    <a href="tel:+923335120590" class="text-sm hover:underline"><i class="fas fa-phone mr-1"></i> Call Now</a>
+                </div>
+            </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h2>Quality Medicines & Healthcare Products</h2>
-            <p>Smart Plus Pharmacy provides premium pharmaceutical products and healthcare solutions with free home delivery across Mandi Bahauddin.</p>
-            <a href="tel:+923335120590" class="btn"><i class="fas fa-phone"></i> Call Now</a>
+    <section id="home" class="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Quality Medicines & Healthcare Products</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8">Smart Plus Pharmacy provides premium pharmaceutical products and healthcare solutions with free home delivery across Mandi Bahauddin.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="tel:+923335120590" class="bg-secondary-500 hover:bg-secondary-600 text-white font-medium py-3 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-phone mr-2"></i> Call Now
+                </a>
+                <a href="https://wa.me/923335120590" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                </a>
+            </div>
         </div>
     </section>
-    
+
     <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
+    <section id="services" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary-700 dark:text-primary-400 mb-4">Our Services</h2>
+                <div class="w-20 h-1 bg-secondary-500 mx-auto"></div>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-truck"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all transform hover:-translate-y-2">
+                    <div class="bg-primary-600 text-white p-6 text-center">
+                        <i class="fas fa-truck text-4xl"></i>
                     </div>
-                    <div class="service-content">
-                        <h3>Free Home Delivery</h3>
-                        <p>We deliver medicines and healthcare products to your doorstep free of charge anywhere in Mandi Bahauddin.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Quality Medicines</h3>
-                        <p>We provide only genuine and high-quality medicines from trusted pharmaceutical companies.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary-700 dark:text-primary-400">Free Home Delivery</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We deliver medicines and healthcare products to your doorstep free of charge anywhere in Mandi Bahauddin.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-md"></i>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all transform hover:-translate-y-2">
+                    <div class="bg-primary-600 text-white p-6 text-center">
+                        <i class="fas fa-prescription-bottle-alt text-4xl"></i>
                     </div>
-                    <div class="service-content">
-                        <h3>Expert Advice</h3>
-                        <p>Our qualified pharmacists are available to provide professional advice about your medications.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary-700 dark:text-primary-400">Quality Medicines</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We provide only genuine and high-quality medicines from trusted pharmaceutical companies.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow-md overflow-hidden transition-all transform hover:-translate-y-2">
+                    <div class="bg-primary-600 text-white p-6 text-center">
+                        <i class="fas fa-user-md text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3 text-primary-700 dark:text-primary-400">Expert Advice</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Our qualified pharmacists are available to provide professional advice about your medications.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Products</h2>
+    <section id="products" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary-700 dark:text-primary-400 mb-4">Our Products</h2>
+                <div class="w-20 h-1 bg-secondary-500 mx-auto"></div>
             </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Medicines">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                             alt="Prescription Medicines" 
+                             class="product-image w-full h-48 object-cover transition-all duration-300">
                     </div>
-                    <div class="product-info">
-                        <h3>Prescription Medicines</h3>
-                        <p>All types of prescription drugs available</p>
-                        <div class="product-price">Ask for Price</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="OTC Medicines">
-                    </div>
-                    <div class="product-info">
-                        <h3>OTC Medicines</h3>
-                        <p>Over-the-counter medications for common ailments</p>
-                        <div class="product-price">Ask for Price</div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2 text-primary-700 dark:text-primary-400">Prescription Medicines</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">All types of prescription drugs available</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary-600 dark:text-primary-300 font-bold">Ask for Price</span>
+                            <button class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded text-sm transition">
+                                <i class="fas fa-shopping-cart mr-1"></i> Order
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Surgical Items">
-                    </div>
-                    <div class="product-info">
-                        <h3>Surgical Items</h3>
-                        <p>Bandages, gloves, masks, and other surgical supplies</p>
-                        <div class="product-price">Ask for Price</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Baby Care">
-                    </div>
-                    <div class="product-info">
-                        <h3>Baby Care Products</h3>
-                        <p>Diapers, baby lotions, and other infant care items</p>
-                        <div class="product-price">Ask for Price</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smart Plus Pharmacy Store">
-            </div>
-            <div class="about-content">
-                <h2>About Smart Plus Pharmacy</h2>
-                <p>Smart Plus Pharmacy is a trusted name in Mandi Bahauddin's healthcare sector, providing quality medicines and healthcare products to our community since our establishment.</p>
-                <p>Located opposite UBL Bank (Main Branch) on Old Rasul Road, we pride ourselves on our professional service, genuine products, and commitment to customer satisfaction.</p>
                 
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div>
-                            <h4>Genuine Products</h4>
-                            <p>We source all our medicines directly from authorized distributors.</p>
+                <!-- Product 2 -->
+                <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                             alt="OTC Medicines" 
+                             class="product-image w-full h-48 object-cover transition-all duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2 text-primary-700 dark:text-primary-400">OTC Medicines</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Over-the-counter medications for common ailments</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary-600 dark:text-primary-300 font-bold">Ask for Price</span>
+                            <button class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded text-sm transition">
+                                <i class="fas fa-shopping-cart mr-1"></i> Order
+                            </button>
                         </div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div>
-                            <h4>Professional Staff</h4>
-                            <p>Our qualified pharmacists are always available to assist you.</p>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                             alt="Surgical Items" 
+                             class="product-image w-full h-48 object-cover transition-all duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2 text-primary-700 dark:text-primary-400">Surgical Items</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Bandages, gloves, masks, and other surgical supplies</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary-600 dark:text-primary-300 font-bold">Ask for Price</span>
+                            <button class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded text-sm transition">
+                                <i class="fas fa-shopping-cart mr-1"></i> Order
+                            </button>
                         </div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div>
-                            <h4>Convenient Location</h4>
-                            <p>Easy to find opposite UBL Bank Main Branch on Old Rasul Road.</p>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-xl">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                             alt="Baby Care" 
+                             class="product-image w-full h-48 object-cover transition-all duration-300">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2 text-primary-700 dark:text-primary-400">Baby Care Products</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Diapers, baby lotions, and other infant care items</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary-600 dark:text-primary-300 font-bold">Ask for Price</span>
+                            <button class="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded text-sm transition">
+                                <i class="fas fa-shopping-cart mr-1"></i> Order
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info-box">
-                    <h3>Get In Touch</h3>
-                    <div class="contact-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Opposite: UBL Bank (Main Branch), Old Rasul Rd, Mandi Bahauddin, 50400, Pakistan</p>
-                        <p><i class="fas fa-phone"></i> +92 333 5120590</p>
-                        <p><i class="fab fa-whatsapp"></i> WhatsApp: +92 333 5120590</p>
-                        <p><i class="fas fa-envelope"></i> info@smartpluspharmacy.com</p>
-                    </div>
-                    <h3>Business Hours</h3>
-                    <p><i class="fas fa-clock"></i> Monday - Saturday: 9:00 AM - 11:30 PM</p>
-                    <p><i class="fas fa-clock"></i> Sunday: 10:00 AM - 11:00 PM</p>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-8">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+                         alt="Smart Plus Pharmacy Store" 
+                         class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-primary-700 dark:text-primary-400 mb-6">About Smart Plus Pharmacy</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Smart Plus Pharmacy is a trusted name in Mandi Bahauddin's healthcare sector, providing quality medicines and healthcare products to our community since our establishment.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Located opposite UBL Bank (Main Branch) on Old Rasul Road, we pride ourselves on our professional service, genuine products, and commitment to customer satisfaction.</p>
                     
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/923335120590"><i class="fab fa-whatsapp"></i></a>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full p-2 mr-4">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Genuine Products</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">We source all our medicines directly from authorized distributors.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full p-2 mr-4">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Professional Staff</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Our qualified pharmacists are always available to assist you.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-300 rounded-full p-2 mr-4">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Convenient Location</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Easy to find opposite UBL Bank Main Branch on Old Rasul Road.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-info-box">
-                    <h3>Send Us a Message</h3>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone">
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary-700 dark:text-primary-400 mb-4">Contact Us</h2>
+                <div class="w-20 h-1 bg-secondary-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Contact Information -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Get In Touch</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400 mt-1 mr-3"></i>
+                            <p class="text-gray-600 dark:text-gray-300">Opposite: UBL Bank (Main Branch), Old Rasul Rd, Mandi Bahauddin, 50400, Pakistan</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-primary-600 dark:text-primary-400 mr-3"></i>
+                            <a href="tel:+923335120590" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition">+92 333 5120590</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-whatsapp text-primary-600 dark:text-primary-400 mr-3"></i>
+                            <a href="https://wa.me/923335120590" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition">WhatsApp: +92 333 5120590</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-primary-600 dark:text-primary-400 mr-3"></i>
+                            <a href="mailto:info@smartpluspharmacy.com" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition">info@smartpluspharmacy.com</a>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Business Hours</h3>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-clock text-primary-600 dark:text-primary-400 mr-3"></i>
+                        <p class="text-gray-600 dark:text-gray-300">Monday - Saturday: 9:00 AM - 11:30 PM</p>
+                    </div>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-clock text-primary-600 dark:text-primary-400 mr-3"></i>
+                        <p class="text-gray-600 dark:text-gray-300">Sunday: 10:00 AM - 11:00 PM</p>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-primary-600 hover:bg-primary-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-primary-600 hover:bg-primary-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/923335120590" target="_blank" class="bg-green-500 hover:bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-400 mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Send Us a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-1">Your Phone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-white transition"></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-lg transition-all transform hover:scale-105">
+                            Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Map Section -->
+    <div class="bg-white dark:bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <div class="rounded-xl overflow-hidden shadow-xl">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.234567890123!2d73.49123456789012!3d32.584321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDM1JzAzLjYiTiA3M8KwMjknMzAuNiJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        class="dark:grayscale dark:opacity-90"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>About Us</h3>
-                    <p>Smart Plus Pharmacy is committed to providing quality healthcare products and services to the community of Mandi Bahauddin.</p>
+    <footer class="bg-gradient-to-r from-primary-800 to-primary-700 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-secondary-500">About Us</h3>
+                    <p class="text-sm opacity-90">Smart Plus Pharmacy is committed to providing quality healthcare products and services to the community of Mandi Bahauddin.</p>
                 </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-secondary-500">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-sm opacity-90 hover:opacity-100 transition">Home</a></li>
+                        <li><a href="#products" class="text-sm opacity-90 hover:opacity-100 transition">Products</a></li>
+                        <li><a href="#services" class="text-sm opacity-90 hover:opacity-100 transition">Services</a></li>
+                        <li><a href="#about" class="text-sm opacity-90 hover:opacity-100 transition">About Us</a></li>
+                        <li><a href="#contact" class="text-sm opacity-90 hover:opacity-100 transition">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>Our Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Free Home Delivery</a></li>
-                        <li><a href="#">Medicine Consultation</a></li>
-                        <li><a href="#">Prescription Filling</a></li>
-                        <li><a href="#">Healthcare Products</a></li>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-secondary-500">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm opacity-90 hover:opacity-100 transition">Free Home Delivery</a></li>
+                        <li><a href="#" class="text-sm opacity-90 hover:opacity-100 transition">Medicine Consultation</a></li>
+                        <li><a href="#" class="text-sm opacity-90 hover:opacity-100 transition">Prescription Filling</a></li>
+                        <li><a href="#" class="text-sm opacity-90 hover:opacity-100 transition">Healthcare Products</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Opposite: UBL Bank (Main Branch), Old Rasul Rd, Mandi Bahauddin</p>
-                    <p><i class="fas fa-phone"></i> +92 333 5120590</p>
-                    <p><i class="fas fa-envelope"></i> info@smartpluspharmacy.com</p>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-secondary-500">Contact Info</h3>
+                    <div class="space-y-2 text-sm opacity-90">
+                        <p class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                            Opposite: UBL Bank (Main Branch), Old Rasul Rd, Mandi Bahauddin
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            +92 333 5120590
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            info@smartpluspharmacy.com
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            
+            <div class="border-t border-white/10 pt-6 text-center text-sm opacity-80">
                 <p>&copy; 2025 Smart Plus Pharmacy. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923335120590" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:scale-110 z-20">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>
